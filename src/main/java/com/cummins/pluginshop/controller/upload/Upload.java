@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Map;
 
@@ -18,20 +19,17 @@ public class Upload {
     private UploadImpl uploadService;
 
     @PostMapping("/upload")
-    public Resp<String> upload(@RequestParam(value = "rrt") MultipartFile file) throws URISyntaxException {
-        uploadService.saveFile(file);
-        return Resp.success("a", null);
+    public Resp<String> upload(@RequestParam(value = "rrt") MultipartFile file) throws URISyntaxException, IOException {
+        return uploadService.saveFile(file);
     }
 
     @PostMapping("/tt1")
     public void tt(@RequestBody Map<String, String> m) {
         System.out.println(m);
-        return;
     }
 
     @GetMapping("/tt1")
     public void gg(@RequestParam String param) {
         System.out.println(param);
-        return;
     }
 }
