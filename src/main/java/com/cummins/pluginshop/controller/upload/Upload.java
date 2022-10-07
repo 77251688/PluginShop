@@ -3,13 +3,13 @@ package com.cummins.pluginshop.controller.upload;
 import com.cummins.pluginshop.entity.Resp;
 import com.cummins.pluginshop.service.upload.UploadImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -19,17 +19,7 @@ public class Upload {
     private UploadImpl uploadService;
 
     @PostMapping("/upload")
-    public Resp<String> upload(@RequestParam(value = "rrt") MultipartFile file) throws URISyntaxException, IOException {
+    public Resp<?> upload(@RequestParam(value = "rrt") MultipartFile file) {
         return uploadService.saveFile(file);
-    }
-
-    @PostMapping("/tt1")
-    public void tt(@RequestBody Map<String, String> m) {
-        System.out.println(m);
-    }
-
-    @GetMapping("/tt1")
-    public void gg(@RequestParam String param) {
-        System.out.println(param);
     }
 }

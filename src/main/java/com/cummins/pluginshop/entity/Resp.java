@@ -36,10 +36,10 @@ public class Resp<T> {
     }
 
     public static <T> Resp<T> success(String message, T data) {
-        return new Resp("200", message, data);
+        return new Resp<>("200", message, data);
     }
 
     public static <T> Resp<T> failed(String code, String message, T data) {
-        return new Resp(code, message, data);
+        return new Resp<>(code, message, data);
     }
 }

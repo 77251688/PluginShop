@@ -7,13 +7,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 @Service
 @Slf4j
 public class UploadImpl implements Upload {
     @Override
-    public Resp<String> saveFile(MultipartFile file) {
+    public Resp<?> saveFile(MultipartFile file) {
         String filename = file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf("."));
         String fileOriginalName = file.getOriginalFilename();
         File file1 = new File(this.getClass().getResource("/").getPath() + filename);
@@ -25,7 +24,7 @@ public class UploadImpl implements Upload {
             return Resp.success("上传成功", "path" + file1 + "\\" + filename);
         } catch (IOException e) {
             e.printStackTrace();
-            return Resp.failed("500", "", "null");
+            return Resp.failed("500", "", 500);
         }
     }
 }
