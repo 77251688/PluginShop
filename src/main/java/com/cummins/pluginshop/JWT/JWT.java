@@ -25,9 +25,7 @@ public class JWT {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 150 * 1000));
 
-        String token = jwtBuilder.compact();
-
-        return token;
+        return jwtBuilder.compact();
     }
 
     public static boolean checkToken(String token) {
