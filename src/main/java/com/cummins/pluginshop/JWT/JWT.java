@@ -5,14 +5,17 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class JWT {
-    public static final String secret = "1235677";
+    private static final String secret = "1235677";
 
     public static String createToken(Map<String, Object> claims) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, 60 * 60);
 
         Map<String, Object> map = new HashMap<>();
         map.put("alg", "HS256");
@@ -23,7 +26,7 @@ public class JWT {
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .setClaims(claims)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 150 * 1000));
+                .setExpiration(calendar.getTime());
 
         return jwtBuilder.compact();
     }
