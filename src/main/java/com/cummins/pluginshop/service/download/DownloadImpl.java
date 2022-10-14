@@ -8,7 +8,7 @@ import java.io.*;
 @Service
 public class DownloadImpl implements Download {
     @Override
-    public Resp<byte[]> d() {
+    public Resp<?> d() {
         try {
             File f = new File(this.getClass().getResource("/").getPath() + "\\hello" + "\\hello.c");
             FileInputStream fileInputStream = new FileInputStream(f);
@@ -17,8 +17,7 @@ public class DownloadImpl implements Download {
             return Resp.success("1", b);
         } catch (IOException e) {
             e.printStackTrace();
-            Resp.failed("500", "0", "null");
+            return Resp.failed("500", "0", "null");
         }
-        return null;
     }
 }
