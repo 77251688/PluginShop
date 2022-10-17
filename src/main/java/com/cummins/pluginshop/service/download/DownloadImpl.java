@@ -3,7 +3,9 @@ package com.cummins.pluginshop.service.download;
 import com.cummins.pluginshop.entity.Resp;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 @Service
 public class DownloadImpl implements Download {
